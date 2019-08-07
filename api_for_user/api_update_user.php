@@ -7,6 +7,7 @@
  */
 
 include '../function.php';
+header('Content-Type: application/json');
 
 $user = (!empty($_GET['user']))?$_GET['user']: 0;
 $email = (!empty($_GET['email']))?$_GET['email']: 0;
@@ -14,5 +15,4 @@ $date = (!empty($_GET['date']))?$_GET['date']: 0;
 
 $update_user = userUpdate($user, $pass, $email, $date);
 
-header('Content-Type: application/json');
 echo json_encode($update_user);

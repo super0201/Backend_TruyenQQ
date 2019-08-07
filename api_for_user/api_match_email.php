@@ -9,15 +9,12 @@
 include '../function.php';
 header('Content-Type: application/json');
 
-$user = (!empty($_GET['user']))?$_GET['user']: NULL;
+$mail = (!empty($_GET['mail']))?$_GET['mail']: NULL;
 
-if ($user == NULL){
+if ($mail == NULL){
     echo json_encode('Please input user for checking!');
 } else {
-    $check_user = matchUsername($user);
+    $check_mail = matchEmail($mail);
 
-    echo json_encode($check_user);
+    echo json_encode($check_mail);
 }
-
-
-

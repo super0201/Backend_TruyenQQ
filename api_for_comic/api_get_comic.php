@@ -6,10 +6,10 @@
  * and open the template in the editor.
  */
 include '../function.php';
+header('Content-Type: application/json');
 
 $index = (!empty($_GET['index']))?$_GET['index']: 0;
 
 $getAll = getAllComic($index);
 
-header('Content-Type: application/json');
 echo json_encode($getAll);

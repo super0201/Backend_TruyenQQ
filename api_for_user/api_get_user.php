@@ -6,6 +6,7 @@
  * and open the template in the editor.
  */
 include '../function.php';
+header('Content-Type: application/json');
 
 $user = (!empty($_GET['user']))?$_GET['user']: 0;
 
@@ -14,7 +15,6 @@ if ($user == NULL){
 } else {    
     $get_user = getUser($user);
     
-    header('Content-Type: application/json');
     echo json_encode($get_user);
 }
 

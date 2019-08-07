@@ -7,6 +7,7 @@
  */
 
 include '../function.php';
+header('Content-Type: application/json');
 
 $chap = (!empty($_GET['chap']))?$_GET['chap']: 0;
 $name = (!empty($_GET['name']))?$_GET['name']: 0;
@@ -16,6 +17,5 @@ if ($chap == 0 || $name == 0){
 } else {
     $getChap = getChapter($name, $chap);
 
-    header('Content-Type: application/json');
     echo json_encode($getChap);
 }

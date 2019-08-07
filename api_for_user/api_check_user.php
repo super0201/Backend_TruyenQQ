@@ -7,6 +7,7 @@
  */
 
 include '../function.php';
+header('Content-Type: application/json');
 
 $user = (!empty($_GET['user']))?$_GET['user']: 0;
 $pass = (!empty($_GET['pass']))?$_GET['pass']: 0;
@@ -16,6 +17,5 @@ if ($user == 0 || $pass == 0){
 } else {
     $check_user = checkUser($user, $pass);
 
-    header('Content-Type: application/json');
     echo json_encode($check_user);
 }

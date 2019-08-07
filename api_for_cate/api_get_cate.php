@@ -7,10 +7,10 @@
  */
 
 include '../function.php';
+header('Content-Type: application/json');
 
 $index = (!empty($_GET['index']))?$_GET['index']: 0;
 
 $getCate = getCategory($index);
 
-header('Content-Type: application/json');
 echo json_encode($getCate);

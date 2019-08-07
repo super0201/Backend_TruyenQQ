@@ -7,6 +7,7 @@
  */
 
 include '../function.php';
+header('Content-Type: application/json');
 
 $name = (!empty($_GET['name']))?$_GET['name']: NULL;
 
@@ -15,6 +16,5 @@ if ($name == NULL){
 } else {
     $count = countChap($name);
 
-    header('Content-Type: application/json');
     echo json_encode($count);
 }

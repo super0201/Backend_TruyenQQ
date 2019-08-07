@@ -83,11 +83,11 @@ function matchUsername($user){
 }
 
 //find match email
-function matchMail($email){
+function matchEmail($mail){
     global $database;
     
     if ($database -> has("user", [
-        "username" => "$user"
+        "email" => "$mail"
     ]))
     {
             return TRUE;

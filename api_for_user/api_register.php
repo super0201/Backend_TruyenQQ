@@ -7,6 +7,7 @@
  */
 
 include '../function.php';
+header('Content-Type: application/json');
 
 $user = (!empty($_GET['user']))?$_GET['user']: 0;
 $pass = (!empty($_GET['pass']))?$_GET['pass']: 0;
@@ -18,6 +19,5 @@ if ($user == 0 || $pass == 0 || $email == 0){
 } else {
     $user_register = userRegister($user, $pass, $email, $date);
 
-    header('Content-Type: application/json');
     echo json_encode($user_register);
 }
