@@ -67,11 +67,10 @@ function userRegister($user, $pass, $email, $date){
 }
 
 //for updating user
-function userUpdate($user, $pass, $email, $date){
+function userUpdate($user, $email, $date){
     global $database;
     
     $user_update = $database -> update("user", [
-        "password" => "$pass",
         "email" => "$email",
         "date_update" => "$date"
     ],  ["username" => "$user"]);

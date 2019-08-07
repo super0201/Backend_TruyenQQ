@@ -9,7 +9,6 @@
 include '../function.php';
 
 $user = (!empty($_GET['user']))?$_GET['user']: 0;
-$pass = (!empty($_GET['pass']))?$_GET['pass']: 0;
 $email = (!empty($_GET['email']))?$_GET['email']: 0;
 $date = (!empty($_GET['date']))?$_GET['date']: 0;
 
