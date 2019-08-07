@@ -14,6 +14,7 @@ $bm = (!empty($_GET['bm']))?$_GET['bm']: NULL;
 
 if ($user == NULL || $bm == NULL){
     echo json_encode('Please input username or bm correctly!');
+    
 } else {
     $save = saveBookmark($user, $bm);
 

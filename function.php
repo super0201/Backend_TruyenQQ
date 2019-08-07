@@ -53,13 +53,12 @@ function getUser($user){
 }
 
 //for user register
-function userRegister($user, $pass, $email, $date){
+function userRegister($user, $pass, $date){
     global $database;
     
     $user_reg = $database -> insert("user", [
         "username" => "$user",
         "password" => "$pass",
-        "email" => "$email",
         "date_add" => "$date"
     ]);
    

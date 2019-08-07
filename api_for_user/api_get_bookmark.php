@@ -8,14 +8,17 @@
 include '../function.php';
 header('Content-Type: application/json');
 
-$user = (!empty($_GET['user']))?$_GET['user']: 0;
+$user = (!empty($_GET['user']))?$_GET['user']: NULL;
+
+$get_bookmark = getBookmark($user);
 
 if ($user == NULL){
-    echo 'Please input user to get bookmark!';
+    echo json_encode('Please input user to get bookmark!');
+    
 } else if ($get_bookmark == NULL){
     echo 'No bookmark!';
+    
 } else {
-    $get_bookmark = getBookmark($user);
-
+    
     echo json_encode($get_bookmark);   
 }

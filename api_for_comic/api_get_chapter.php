@@ -9,11 +9,12 @@
 include '../function.php';
 header('Content-Type: application/json');
 
-$chap = (!empty($_GET['chap']))?$_GET['chap']: 0;
-$name = (!empty($_GET['name']))?$_GET['name']: 0;
+$chap = (!empty($_GET['chap']))?$_GET['chap']: NULL;
+$name = (!empty($_GET['name']))?$_GET['name']: NULL;
 
 if ($chap == 0 || $name == 0){
-    echo json_encode('No chapter or comics like this!');
+    echo json_encode('Input chapter and comic name correctly!');
+    
 } else {
     $getChap = getChapter($name, $chap);
 

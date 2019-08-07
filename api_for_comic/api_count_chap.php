@@ -12,7 +12,8 @@ header('Content-Type: application/json');
 $name = (!empty($_GET['name']))?$_GET['name']: NULL;
 
 if ($name == NULL){
-    echo json_encode('Please input name correctly!');
+    echo json_encode('Please input comic name correctly!');
+    
 } else {
     $count = countChap($name);
 
