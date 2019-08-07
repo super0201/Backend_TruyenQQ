@@ -27,7 +27,7 @@ function checkUser($user, $pass){
     if ($database -> has("user", [
             "AND" => [
                     "OR" => [
-                            "username" => "$user",
+                            "username" => "$user"
                     ],
                     "password" => "$pass"
             ]
@@ -64,6 +64,38 @@ function userRegister($user, $pass, $email, $date){
     ]);
    
     return $user_reg;
+}
+
+//find match username
+function matchUsername($user){
+    global $database;
+    
+    if ($database -> has("user", [
+        "username" => "$user"
+    ]))
+    {
+            return TRUE;
+    }
+    else
+    {
+            return FALSE;
+    }
+}
+
+//find match email
+function matchMail($email){
+    global $database;
+    
+    if ($database -> has("user", [
+        "username" => "$user"
+    ]))
+    {
+            return TRUE;
+    }
+    else
+    {
+            return FALSE;
+    }
 }
 
 //for updating user

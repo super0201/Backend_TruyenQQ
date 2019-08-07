@@ -5,6 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 include '../function.php';
 
 $user = (!empty($_GET['user']))?$_GET['user']: 0;
