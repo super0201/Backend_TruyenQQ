@@ -12,7 +12,7 @@ header('Content-Type: application/json');
 $mail = (!empty($_GET['mail']))?$_GET['mail']: NULL;
 
 if ($mail == NULL){
-    echo json_encode('Please input user for checking!');
+    echo json_encode('Please input email for checking!');
 } else {
     $check_mail = matchEmail($mail);
 
