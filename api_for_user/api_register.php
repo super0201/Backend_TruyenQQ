@@ -9,15 +9,15 @@
 include '../function.php';
 header('Content-Type: application/json');
 
-$user = (!empty($_GET['user']))?$_GET['user']: 0;
-$pass = (!empty($_GET['pass']))?$_GET['pass']: 0;
+$user = (!empty($_GET['user']))?$_GET['user']: NULL;
+$pass = (!empty($_GET['pass']))?$_GET['pass']: NULL;
 $date = (!empty($_GET['date']))?$_GET['date']: 0;
 
-if ($user == 0 || $pass == 0){
+if ($user == 0 || $pass == 0 || $date == 0){
     echo json_encode('Please input: Username, Password, Date to register!');
     
 } else {
     $user_register = userRegister($user, $pass, $date);
 
-    echo json_encode($user_register);
+    echo json_encode('success');
 }
