@@ -16,6 +16,13 @@ if ($user == 0 || $pass == 0){
     echo json_encode('Please input user and password correctly!');
 } else {
     $check_user = checkUser($user, $pass);
+    if ($check_user){
+        $response["result"] = "1";
+        $response["message"] = "Login Success";
+    } else {
+        $response["result"] = "0";
+        $response["message"] = "Username or Password isn't correct";
+    }
 
-    echo json_encode($check_user);
+    echo json_encode($response);
 }

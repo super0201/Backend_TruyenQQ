@@ -9,15 +9,25 @@
 include '../function.php';
 header('Content-Type: application/json');
 
-$user = (!empty($_GET['user']))?$_GET['user']: NULL;
-$pass = (!empty($_GET['pass']))?$_GET['pass']: NULL;
-$date = (!empty($_GET['date']))?$_GET['date']: 0;
+$user = (!empty($_POST['user']))?$_POST['user']: NULL;
+$pass = (!empty($_POST['pass']))?$_POST['pass']: NULL;
+$name = (!empty($_POST['name']))?$_POST['name']: NULL;
+$date = (!empty($_POST['date']))?$_POST['date']: 0;
 
-if ($user == 0 || $pass == 0 || $date == 0){
-    echo json_encode('Please input: Username, Password, Date to register!');
-    
+
+if ($user != NULL && $pass != NULL && $name != NULL && $date != 0) {
+    if (matchUsername($user)) {
+        $response["result"] = "failure";
+        $response["message"] = "User Already Registered !";
+    } else {
+        userRegister($user, $pass, $name, $date);
+        
+        $response["result"] = "success";
+        $response["message"] = "User Registered Successfully !";
+    }
 } else {
-    $user_register = userRegister($user, $pass, $date);
-
-    echo json_encode('success');
+    $response['result'] = "failure";
+    $response['message'] = "Username, Password, Name, Date_add can't be empty";
 }
+
+echo json_encode($response);

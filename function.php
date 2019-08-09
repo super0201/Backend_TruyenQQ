@@ -53,16 +53,17 @@ function getUser($user){
 }
 
 //for user register
-function userRegister($user, $pass, $date){
+function userRegister($user, $pass, $name, $date){
     global $database;
     
-    $user_reg = $database -> insert("user", [
+    $register = $database -> insert("user", [
         "username" => "$user",
         "password" => "$pass",
+        "name" => "$name",
         "date_add" => "$date"
     ]);
    
-    return $user_reg;
+    return $register;
 }
 
 //find match username
@@ -101,12 +102,12 @@ function matchEmail($mail){
 function userUpdate($user, $email, $date){
     global $database;
     
-    $user_update = $database -> update("user", [
+    $database -> update("user", [
         "email" => "$email",
         "date_update" => "$date"
     ],  ["username" => "$user"]);
     
-    return $user_update;
+    return TRUE;
 }
 
 //save bookmark
