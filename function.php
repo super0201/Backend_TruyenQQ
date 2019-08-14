@@ -45,7 +45,7 @@ function checkUser($user, $pass){
 function getUser($user){
     global $database;
     
-    $getUser = $database -> get("user", "*", [
+    $getUser = $database -> get("user", ["username", "email", "name", "thumb", "date_add", "date_update"], [
        "username" => "$user"
     ]);
     
