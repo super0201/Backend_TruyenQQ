@@ -10,21 +10,13 @@ header('Content-Type: application/json');
 
 $user = (!empty($_GET['user']))?$_GET['user']: 0;
 
-if ($user != NULL){
+if($user != NULL){
     $get_user = getUser($user);
     
-   if($get_user != NULL){
-        $response["success"] = "1";
-        $response["user"] = array();
-
-        array_push($response["user"], $get_user);
-   }
-  
-} else {  
-    
-    $response["success"] = "0";
-    $response["message"] = "No User Like This";  
+    $response = $get_user;
+} else {
+    $response = "User can't be empty";
 }
 
-echo json_encode($response);
+echo json_encode($get_user);
 
