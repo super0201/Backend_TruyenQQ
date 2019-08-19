@@ -18,5 +18,5 @@ if($user != NULL){
     $response = "User can't be empty";
 }
 
-echo json_encode($get_user);
+echo json_encode($response);
 

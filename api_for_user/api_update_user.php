@@ -9,10 +9,20 @@
 include '../function.php';
 header('Content-Type: application/json');
 
-$user = (!empty($_GET['user']))?$_GET['user']: 0;
-$email = (!empty($_GET['email']))?$_GET['email']: 0;
+$user = (!empty($_GET['user']))?$_GET['user']: NULL;
+$name = (!empty($_GET['name']))?$_GET['name']: NULL;
+$email = (!empty($_GET['email']))?$_GET['email']: NULL;
 $date = (!empty($_GET['date']))?$_GET['date']: 0;
 
-$update_user = userUpdate($user, $pass, $email, $date);
+if($user != NULL || $email != NULL || $name != NULL || $date != NULL ){
+    $update_user = userUpdate($user, $name, $email, $date);
+    
+    $response['success'] = "1";
+    $response['message'] = "Update success Rintaro!";
+    
+} else {
+    $response['success'] = "0";
+    $response['message'] = "Nani? Omae wa mou shinderu!";
+}
 
 echo json_encode($update_user);

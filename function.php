@@ -98,13 +98,26 @@ function matchEmail($mail){
     }
 }
 
+//for password update
+function updatePass($user, $pass){
+    global $database;
+    
+    $update_pass = $database -> update("user", [
+        "password" => "$pass"],[
+            "username" => "$user"
+        ]);
+    
+    return $update_pass;
+}
+
 //for updating user
-function userUpdate($user, $email, $date){
+function userUpdate($user ,$name, $email, $date){
     global $database;
     
     $database -> update("user", [
         "email" => "$email",
-        "date_update" => "$date"
+        "date_update" => "$date",
+        "name" => "$name"
     ],  ["username" => "$user"]);
     
     return TRUE;
@@ -140,6 +153,20 @@ function getAllComic($index) {
     $total = 14; 
     
     $get_link = $database -> select("comic", "*",[
+        "ORDER" => ["id" => "DESC"],
+        "LIMIT" => [$total * $index, $total]
+    ]);
+    
+    return $get_link;
+}
+
+//get all the comic name, desc, type & date
+function getAllComic2($index) {
+    global $database;
+    
+    $total = 14; 
+    
+    $get_link = $database -> select("novel", "*",[
         "ORDER" => ["id" => "DESC"],
         "LIMIT" => [$total * $index, $total]
     ]);
