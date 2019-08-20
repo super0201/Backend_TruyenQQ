@@ -20,9 +20,12 @@ if($user != NULL || $email != NULL || $name != NULL || $date != NULL ){
     $response['success'] = "1";
     $response['message'] = "Update success Rintaro!";
     
-} else {
+} else if($update_user == "false"){
     $response['success'] = "0";
     $response['message'] = "Nani? Omae wa mou shinderu!";
+} else {
+    $response['success'] = "0";
+    $response['message'] = "Mr.Stark...I don't feel so good!";
 }
 
-echo json_encode($update_user);
+echo json_encode($response);

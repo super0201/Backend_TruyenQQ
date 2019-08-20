@@ -53,12 +53,17 @@ function getUser($user){
 }
 
 //for user register
-function userRegister($user, $pass, $name, $date){
+function userRegister($user, $pass, $name, $thumb, $date){
     global $database;
+    
+    if ($thumb == 0){
+        $thumb = "https://i.imgur.com/quvASJgh.png";
+    }
     
     $register = $database -> insert("user", [
         "username" => "$user",
         "password" => "$pass",
+        "thumb" => "$thumb",
         "name" => "$name",
         "date_add" => "$date"
     ]);
@@ -136,12 +141,16 @@ function saveBookmark($user, $bm){
 }
 
 //get bookmark from user
-function getBookmark($user){
+function getBookmark($index, $user){
     global $database;
     
-    $getBookMark = $database -> select("bookmark", ["bookmark"],[
-        "user" => "$user"
-    ]);
+    $total = 14;
+    
+    $getBookMark = $database -> select("bookmark", ["id","bookmark"],[
+        "user" => "$user"],[
+            "ORDER" => ["id" => "DESC"],
+            "LIMIT" => [$total * $index, $total]
+        ]);
     
     return $getBookMark;
 }
@@ -186,6 +195,23 @@ function getCategory($index){
     ]);
     
     return $get_category;
+}
+
+function getComicCate($index, $cate){
+    global $database;
+    
+    $total = 14;
+
+    $get_search = $database -> select("comic", "*", [
+        "AND" => [
+            "OR" => [ 
+                "category[~]" => "$cate"]
+            ],
+            "ORDER" => ["id" => "DESC"],
+            "LIMIT" => [$total * $index, $total]
+    ]);
+    
+    return $get_search;
 }
 
 //get chapter base on comic name
