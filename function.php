@@ -141,13 +141,13 @@ function saveBookmark($user, $bm){
 }
 
 //match bookmark
-function matchBookmark($bm, $user){
+function matchBookmark($user, $bm){
     global $database;
     
-    if ($database -> has("bookmark",[
-        "user" => "$user"],[
-            "bookmark" => "$bm"
-        ]))
+    if ($database -> has("bookmark", [
+        "user" => "$user",
+        "bookmark" => "$bm"
+    ]))
     {
             return TRUE;
     }
@@ -163,7 +163,7 @@ function getBookmark($index, $user){
     
     $total = 14;
     
-    $getBookMark = $database -> select("bookmark", ["id","bookmark"],[
+    $getBookMark = $database -> select("bookmark", "*",[
         "user" => "$user"],[
             "ORDER" => ["id" => "DESC"],
             "LIMIT" => [$total * $index, $total]

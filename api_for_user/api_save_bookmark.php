@@ -15,7 +15,7 @@ $bm = (!empty($_GET['bm']))?$_GET['bm']: NULL;
 if ($user != NULL || $bm != NULL){
     $match = matchBookmark($bm, $user);
     
-    if($match != TRUE){
+    if($match == FALSE){
         saveBookmark($user, $bm);
         
         $response['success'] = "1";
