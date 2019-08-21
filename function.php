@@ -140,6 +140,23 @@ function saveBookmark($user, $bm){
     return $save_bookmark;
 }
 
+//match bookmark
+function matchBookmark($bm, $user){
+    global $database;
+    
+    if ($database -> has("bookmark",[
+        "user" => "$user"],[
+            "bookmark" => "$bm"
+        ]))
+    {
+            return TRUE;
+    }
+    else
+    {
+            return FALSE;
+    }
+}
+
 //get bookmark from user
 function getBookmark($index, $user){
     global $database;
@@ -219,11 +236,10 @@ function getChapter($name, $chap){
     global $database;
     
     $get_chapter = $database -> select("chapter", ["id", "comic", "chapter", "category", "thumb", "date_add", "date_update"], [
-        "AND" => [
-            "OR" => ["comic[~]" => "$name",
-                "chapter[~]" => "$chap"
-            ]]]);
-    
+        "comic" => "$name",
+        "chapter" => "$chap"
+    ]);
+
     return $get_chapter;
 }
 

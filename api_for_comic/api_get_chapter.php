@@ -12,11 +12,19 @@ header('Content-Type: application/json');
 $chap = (!empty($_GET['chap']))?$_GET['chap']: NULL;
 $name = (!empty($_GET['name']))?$_GET['name']: NULL;
 
-if ($chap == 0 || $name == 0){
-    echo json_encode('Input chapter and comic name correctly!');
+if ($chap == NULL || $name == NULL){
+    $response['success'] = "0";
+    $response['message'] = "Bang bang bang!";
     
 } else {
     $getChap = getChapter($name, $chap);
-
-    echo json_encode($getChap);
+    
+    if($getChap != NULL){
+        $response = $getChap;
+    } else {
+        $response['success'] = "0";
+        $response['message'] = "No chapter like this, Banga bang bang!";
+    }
 }
+
+echo json_encode($response);

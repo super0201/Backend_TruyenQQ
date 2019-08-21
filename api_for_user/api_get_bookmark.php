@@ -9,16 +9,15 @@ include '../function.php';
 header('Content-Type: application/json');
 
 $user = (!empty($_GET['user']))?$_GET['user']: NULL;
+$index = (!empty($_GET['index']))?$_GET['index']: 0;
 
-$get_bookmark = getBookmark($user);
-
-if ($user == NULL){
-    echo json_encode('Please input user to get bookmark!');
+if($user != NULL ){
+    $get_bookmark = getBookmark($index, $user);
     
-} else if ($get_bookmark == NULL){
-    echo 'No bookmark!';
-    
+    $response = $get_bookmark;
 } else {
-    
-    echo json_encode($get_bookmark);   
+    $response['success'] = "0";
+    $response['message'] = "Oh god plesas no!";
 }
+
+echo json_encode($response);
